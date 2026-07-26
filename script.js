@@ -2,8 +2,8 @@
 // NOTE: Page content (services, tech ticker, process steps) now
 // lives directly in index.html as static markup — not generated
 // by JS. This means the page displays correctly even if this
-// script fails to load. This file only adds animation and form
-// handling on top of that.
+// script fails to load. This file only adds animation, mobile
+// nav, and form handling on top of that.
 // ============================================================
 
 // ============================================================
@@ -32,11 +32,56 @@ function initReveal() {
 // ============================================================
 function initNavScroll() {
   const header = document.getElementById("site-header");
+  if (!header) return;
   const onScroll = () => {
     header.classList.toggle("scrolled", window.scrollY > 20);
   };
   onScroll();
   window.addEventListener("scroll", onScroll, { passive: true });
+}
+
+// ============================================================
+// Mobile nav drawer
+//
+// On narrow screens the pill nav can't fit all links, so a
+// hamburger button toggles a slide-in sidebar instead. Desktop
+// layout (nav-bar pill with inline links) is untouched.
+// ============================================================
+function initMobileNav() {
+  const toggle = document.getElementById("menu-toggle");
+  const links = document.getElementById("nav-links");
+  const overlay = document.getElementById("nav-overlay");
+  if (!toggle || !links || !overlay) return;
+
+  function closeMenu() {
+    links.classList.remove("is-open");
+    overlay.classList.remove("is-open");
+    toggle.classList.remove("is-open");
+    toggle.setAttribute("aria-expanded", "false");
+  }
+
+  function openMenu() {
+    links.classList.add("is-open");
+    overlay.classList.add("is-open");
+    toggle.classList.add("is-open");
+    toggle.setAttribute("aria-expanded", "true");
+  }
+
+  toggle.addEventListener("click", () => {
+    const isOpen = links.classList.contains("is-open");
+    isOpen ? closeMenu() : openMenu();
+  });
+
+  overlay.addEventListener("click", closeMenu);
+
+  links.querySelectorAll("a").forEach((a) => {
+    a.addEventListener("click", closeMenu);
+  });
+
+  // Close on Escape for keyboard users
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeMenu();
+  });
 }
 
 // ============================================================
@@ -54,6 +99,8 @@ const FORM_ENDPOINT = ""; // e.g. "https://formspree.io/f/your-id"
 
 function initContactForm() {
   const form = document.getElementById("contact-form");
+  if (!form) return;
+
   const submitBtn = document.getElementById("submit-btn");
   const submitLabel = document.getElementById("submit-label");
   const status = document.getElementById("form-status");
@@ -140,5 +187,6 @@ function initContactForm() {
 document.addEventListener("DOMContentLoaded", () => {
   initReveal();
   initNavScroll();
+  initMobileNav();
   initContactForm();
 });

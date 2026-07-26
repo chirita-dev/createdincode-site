@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" />
   <link rel="stylesheet" href="styles.css" />
+  <script>document.documentElement.classList.add('js');</script>
   <style>
     /* ===== Work page — additive styles, layered on top of styles.css ===== */
     .work-hero {
@@ -75,15 +76,19 @@
           <span class="brand-dot"></span>
           <span class="brand-name">CreatedInCode</span>
         </a>
-        <ul class="nav-links">
+        <ul class="nav-links" id="nav-links">
           <li><a href="index.html#services" class="nav-link">Services</a></li>
           <li><a href="work.html" class="nav-link">Work</a></li>
           <li><a href="index.html#systems" class="nav-link">Systems</a></li>
           <li><a href="index.html#about" class="nav-link">About</a></li>
         </ul>
+        <button class="menu-toggle" id="menu-toggle" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
       </nav>
     </div>
   </header>
+  <div class="nav-overlay" id="nav-overlay"></div>
 
   <main>
     <section class="work-hero">
