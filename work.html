@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Work — CreatedInCode</title>
+  <meta name="description" content="Writing and dispatches from CreatedInCode — on AI, systems, and the internet." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ===== Work page — additive styles, layered on top of styles.css ===== */
+    .work-hero {
+      background: var(--navy);
+      color: #fff;
+      padding: 180px 0 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .work-hero .hero-grid-bg { position: absolute; inset: 0; opacity: 0.06; pointer-events: none;
+      background-image: linear-gradient(rgba(255,255,255,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.4) 1px, transparent 1px);
+      background-size: 60px 60px; }
+    .work-hero-title { position: relative; font-size: 12vw; font-weight: 800; line-height: 0.95; letter-spacing: -0.04em; margin: 24px 0 0; }
+    @media (min-width: 640px) { .work-hero-title { font-size: 8vw; } }
+    @media (min-width: 1024px) { .work-hero-title { font-size: 6vw; } }
+    .work-hero-sub { position: relative; margin-top: 28px; max-width: 560px; font-size: 16px; line-height: 1.7; color: rgba(255,255,255,0.75); }
+
+    .pub-section { background: var(--offwhite); color: var(--navy); padding: 96px 0; }
+    .pub-section.alt { background: var(--navy); color: #fff; }
+    .pub-header { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 40px; }
+    .pub-name { font-size: 32px; font-weight: 800; letter-spacing: -0.02em; margin: 0; }
+    @media (min-width: 768px) { .pub-name { font-size: 44px; } }
+    .pub-tagline { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em; color: rgba(10,17,40,0.5); }
+    .pub-section.alt .pub-tagline { color: rgba(255,255,255,0.5); }
+    .pub-link {
+      font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em;
+      color: var(--electric-2); border-bottom: 1px solid rgba(26,100,255,0.4); padding-bottom: 2px;
+      transition: color 0.3s ease, border-color 0.3s ease;
+    }
+    .pub-section.alt .pub-link { color: var(--electric); border-color: rgba(0,229,255,0.4); }
+    .pub-link:hover { color: var(--navy); border-color: var(--navy); }
+    .pub-section.alt .pub-link:hover { color: #fff; border-color: #fff; }
+
+    .post-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    @media (max-width: 900px) { .post-grid { grid-template-columns: 1fr; } }
+    .post-card {
+      display: flex; flex-direction: column; justify-content: space-between; min-height: 220px;
+      padding: 28px; border: 1px solid rgba(10,17,40,0.1); background: #fff;
+      transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+    }
+    .pub-section.alt .post-card { background: rgba(255,255,255,0.03); border-color: rgba(255,255,255,0.1); }
+    .post-card:hover { transform: translateY(-4px); box-shadow: 0 20px 60px -20px rgba(10,17,40,0.15); border-color: rgba(10,17,40,0.3); }
+    .pub-section.alt .post-card:hover { box-shadow: 0 20px 60px -20px rgba(0,0,0,0.6); border-color: rgba(0,229,255,0.4); }
+    .post-date { font-family: var(--font-mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.2em; color: var(--electric-2); }
+    .pub-section.alt .post-date { color: var(--electric); }
+    .post-title { margin: 20px 0 0; font-size: 19px; font-weight: 600; line-height: 1.3; letter-spacing: -0.01em; }
+    .post-desc { margin-top: 12px; font-size: 13px; line-height: 1.6; color: rgba(10,17,40,0.6); }
+    .pub-section.alt .post-desc { color: rgba(255,255,255,0.6); }
+    .post-read { margin-top: 20px; display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--navy); }
+    .pub-section.alt .post-read { color: #fff; }
+    .post-card .arrow { transition: transform 0.3s ease; }
+    .post-card:hover .arrow { transform: translateX(4px); }
+
+    .work-cta { background: var(--navy); color: #fff; padding: 80px 0 96px; text-align: center; }
+    .work-cta p { font-family: var(--font-mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.15em; color: rgba(255,255,255,0.5); margin-bottom: 24px; }
+  </style>
+</head>
+<body>
+
+  <header class="site-header" id="site-header">
+    <div class="wrap">
+      <nav class="nav-bar">
+        <a href="index.html#top" class="brand">
+          <span class="brand-dot"></span>
+          <span class="brand-name">CreatedInCode</span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="index.html#services" class="nav-link">Services</a></li>
+          <li><a href="work.html" class="nav-link">Work</a></li>
+          <li><a href="index.html#systems" class="nav-link">Systems</a></li>
+          <li><a href="index.html#about" class="nav-link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="work-hero">
+      <div class="hero-grid-bg" aria-hidden="true"></div>
+      <div class="wrap">
+        <div class="section-label light">/ 04 — Work</div>
+        <h1 class="work-hero-title">Writing on <span class="italic-accent">AI, systems,</span><br />and the internet.</h1>
+        <p class="work-hero-sub">Essays and dispatches on where technology, governance, and human attention collide — published across two ongoing Substacks.</p>
+      </div>
+    </section>
+
+    <section class="pub-section">
+      <div class="wrap">
+        <div class="pub-header">
+          <div>
+            <h2 class="pub-name">Neural Jollof</h2>
+            <div class="pub-tagline">AI · Governance · Cybersecurity · Privacy</div>
+          </div>
+          <a href="https://neuraljollof.substack.com" target="_blank" rel="noopener" class="pub-link">Visit publication ↗</a>
+        </div>
+
+        <div class="post-grid">
+          <article class="post-card">
+            <div>
+              <span class="post-date">Jul 20, 2026</span>
+              <h3 class="post-title">Privacy Is Becoming AI's Next Battleground</h3>
+              <p class="post-desc">Why data retention is no longer just a legal policy — it's becoming a competitive strategy.</p>
+            </div>
+            <a href="https://open.substack.com/pub/neuraljollof/p/privacy-is-becoming-ais-next-battleground?utm_source=share&utm_medium=android&r=73edv1" target="_blank" rel="noopener" class="post-read">Read on Substack <span class="arrow">→</span></a>
+          </article>
+
+          <article class="post-card">
+            <div>
+              <span class="post-date">Jul 15, 2026</span>
+              <h3 class="post-title">When AI Becomes Care</h3>
+              <p class="post-desc">The governance gap in women's health is quietly becoming an AI problem.</p>
+            </div>
+            <a href="https://open.substack.com/pub/neuraljollof/p/when-ai-becomes-care-the-governance?utm_source=share&utm_medium=android&r=73edv1" target="_blank" rel="noopener" class="post-read">Read on Substack <span class="arrow">→</span></a>
+          </article>
+
+          <article class="post-card">
+            <div>
+              <span class="post-date">Jul 13, 2026</span>
+              <h3 class="post-title">Mythos and the New Cybersecurity Reality</h3>
+              <p class="post-desc">The next cyber war won't be won by the strongest defense — it'll be won by the fastest AI.</p>
+            </div>
+            <a href="https://open.substack.com/pub/neuraljollof/p/mythos-and-the-new-cybersecurity?utm_source=share&utm_medium=android&r=73edv1" target="_blank" rel="noopener" class="post-read">Read on Substack <span class="arrow">→</span></a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="pub-section alt">
+      <div class="wrap">
+        <div class="pub-header">
+          <div>
+            <h2 class="pub-name">The Archive 27</h2>
+            <div class="pub-tagline">Notes on connection, attention & modern life</div>
+          </div>
+          <a href="https://thearchive27.substack.com" target="_blank" rel="noopener" class="pub-link">Visit publication ↗</a>
+        </div>
+
+        <div class="post-grid">
+          <article class="post-card">
+            <div>
+              <span class="post-date">Jun 09, 2026</span>
+              <h3 class="post-title">File 004: The Loneliest Generation</h3>
+              <p class="post-desc">Never before have so many people been connected — and felt so alone.</p>
+            </div>
+            <a href="https://open.substack.com/pub/thearchive27/p/file-004-the-loneliest-generation?utm_source=share&utm_medium=android&r=8j6k92" target="_blank" rel="noopener" class="post-read">Read on Substack <span class="arrow">→</span></a>
+          </article>
+
+          <article class="post-card">
+            <div>
+              <span class="post-date">Jun 04, 2026</span>
+              <h3 class="post-title">File 003: Attention Is the New Currency</h3>
+              <p class="post-desc">The battle for your mind started quietly.</p>
+            </div>
+            <a href="https://open.substack.com/pub/thearchive27/p/file-003-attention-is-the-new-currency?utm_source=share&utm_medium=android&r=8j6k92" target="_blank" rel="noopener" class="post-read">Read on Substack <span class="arrow">→</span></a>
+          </article>
+
+          <article class="post-card">
+            <div>
+              <span class="post-date">Jun 02, 2026</span>
+              <h3 class="post-title">File 001: Distance & Perception</h3>
+              <p class="post-desc">Quiet changes — how distance isn't always physical.</p>
+            </div>
+            <a href="https://open.substack.com/pub/thearchive27/p/file-001-distance-and-perception?utm_source=share&utm_medium=android&r=8j6k92" target="_blank" rel="noopener" class="post-read">Read on Substack <span class="arrow">→</span></a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="work-cta">
+      <div class="wrap">
+        <p>More case studies landing soon</p>
+        <a href="index.html#contact" class="btn-primary">
+          <span>Start a project</span>
+          <span class="arrow">→</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
